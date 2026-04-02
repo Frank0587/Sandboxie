@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+      }
+    }
+  ],
+  "version": 4
+}

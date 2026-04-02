@@ -24,7 +24,7 @@
 #define STR2(X) #X
 #define STR(X) STR2(X)
 
-#define VERSION_MJR		5
+#define VERSION_MJR		15
 #define VERSION_MIN 	72
 #define VERSION_REV 	3
 #define VERSION_UPD 	0
