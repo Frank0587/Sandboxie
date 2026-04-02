@@ -1362,7 +1362,8 @@ _FX LONG SbieApi_QueryDrvInfo(ULONG info_class, VOID* info_data, ULONG info_size
     // Special handling for certificate info query, which is used by the GUI to determine if the certificate is valid and what features are enabled. 
     // always called with a info_data buffer named CertInfo
     if (info_class == -1 && info_size == sizeof(SCertInfo)) {
-        status = FillCertInfo((SCertInfo *)info_data);
+        FillCertInfo((SCertInfo *)info_data);
+        status = STATUS_SUCCESS;
     }else {
 
         memset(parms, 0, sizeof(parms));

@@ -533,7 +533,7 @@ _FX LONGLONG KphGetDateInterval(CSHORT days, CSHORT months, CSHORT years)
 
 SCertInfo Verify_CertInfo = { 0 };
 
-
+/*
 NTSTATUS FillCertInfo( SCertInfo *cert) 
 {
     cert->active = 1;          // * certificate is active
@@ -558,6 +558,7 @@ NTSTATUS FillCertInfo( SCertInfo *cert)
 
     return STATUS_SUCCESS;
 }
+*/
 
 _FX NTSTATUS KphValidateCertificate()
 {
@@ -593,7 +594,7 @@ _FX NTSTATUS KphValidateCertificate()
 
     Verify_CertInfo.State = 0; // clear
 
-    (void)FillCertInfo(&Verify_CertInfo);
+    FillCertInfo(&Verify_CertInfo);
     goto CleanupExit;
 
 

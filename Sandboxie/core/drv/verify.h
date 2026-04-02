@@ -93,6 +93,28 @@ enum ECertLevel {
     eCertMaxLevel       = 0b111,
 };
 
+
+#define FillCertInfo(c)  \
+    do {   \
+        c->active = 1;               \
+        c->expired = 0;              \
+        c->outdated = 0;             \
+        c->grace_period = 0;         \
+        c->locked = 0;               \
+        c->lock_req = 0;             \
+        c->type = eCertGreatPatreon; \
+        c->level = eCertAdvanced;    \
+        c->reservd_3 = 0;            \
+        c->reservd_4 = 0;            \
+        c->opt_desk = 1;             \
+        c->opt_net = 1;              \
+        c->opt_enc = 1;              \
+        c->opt_sec = 1;              \
+        c->expirers_in_sec = 0;      \
+    } while(0) 
+
+
+
 #define CERT_IS_TYPE(cert,t)        ((cert.type & 0b11100) == (unsigned long)(t))
 #define CERT_IS_SUBSCRIPTION(cert)  (CERT_IS_TYPE(cert, eCertBusiness) || CERT_IS_TYPE(cert, eCertHome) || cert.type == eCertEntryPatreon || CERT_IS_TYPE(cert, eCertEvaluation))
 #define CERT_IS_INSIDER(cert)		(CERT_IS_TYPE(cert, eCertEternal) || cert.type == eCertGreatPatreon || cert.type == eCertDeveloper)
@@ -100,7 +122,6 @@ enum ECertLevel {
 
 #ifdef KERNEL_MODE
 extern SCertInfo Verify_CertInfo;
-NTSTATUS FillCertInfo( SCertInfo *cert);
 NTSTATUS KphVerifyBuffer(PUCHAR Buffer, ULONG BufferSize, PUCHAR Signature, ULONG SignatureSize);
 NTSTATUS KphVerifyCurrentProcess();
 #endif
