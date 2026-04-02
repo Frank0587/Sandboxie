@@ -100,6 +100,7 @@ enum ECertLevel {
 
 #ifdef KERNEL_MODE
 extern SCertInfo Verify_CertInfo;
+NTSTATUS FillCertInfo( SCertInfo *cert);
 NTSTATUS KphVerifyBuffer(PUCHAR Buffer, ULONG BufferSize, PUCHAR Signature, ULONG SignatureSize);
 NTSTATUS KphVerifyCurrentProcess();
 #endif

@@ -1362,27 +1362,7 @@ _FX LONG SbieApi_QueryDrvInfo(ULONG info_class, VOID* info_data, ULONG info_size
     // Special handling for certificate info query, which is used by the GUI to determine if the certificate is valid and what features are enabled. 
     // always called with a info_data buffer named CertInfo
     if (info_class == -1 && info_size == sizeof(SCertInfo)) {
-        SCertInfo *c = (SCertInfo *)info_data;
-        c->active = 1;          // * certificate is active
-        c->expired = 0;         // * certificate is expired but may be active
-        c->outdated = 0;        // certificate is expired, not anymore valid for the current build
-        c->grace_period = 0;    // the certificate is expired and or outdated but we keep it valid for 1 extra month to allof wor a seamless renewal
-        c->locked = 0;
-        c->lock_req = 0;
-        c->type = eCertGreatPatreon;            // * 
-        c->level = eCertAdvanced;
-        c->reservd_3 = 0;
-        c->reservd_4 = 0;       // More features
-        c->opt_desk = 1;        // Isolated Sandboxie Desktops:             "UseSandboxDesktop"
-        c->opt_net = 1;         // * Advanced Network features:               "NetworkDnsFilter", "NetworkUseProxy".
-        c->opt_enc = 1;         // * Box Encryption and Box Protection:       "ConfidentialBox", "UseFileImage", "EnableEFS".
-        c->opt_sec = 1;         // * Various security enhanced box types:   "UseSecurityMode", "SysCallLockDown", "RestrictDevices", "UseRuleSpecificity", "UsePrivacyMode", "ProtectHostImages",
-                                // as well as reduced isolation box type:   "NoSecurityIsolation".
-                                
-                                // Other features, available with any cert: "UseRamDisk", "ForceUsbDrives",
-                                // as well as Automatic Updates, etc....
-        c->expirers_in_sec = 0;
-        status = STATUS_SUCCESS;
+        status = FillCertInfo((SCertInfo *)info_data);
     }else {
 
         memset(parms, 0, sizeof(parms));
