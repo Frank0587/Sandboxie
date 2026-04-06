@@ -113,6 +113,33 @@ enum ECertLevel {
         (c)->expirers_in_sec = 0;      \
     } while(0) 
 
+/*
+NTSTATUS FillCertInfo( SCertInfo *cert)
+{
+    cert->active = 1;          // * certificate is active
+    cert->expired = 0;         // * certificate is expired but may be active
+    cert->outdated = 0;        // certificate is expired, not anymore valid for the current build
+    cert->grace_period = 0;    // the certificate is expired and or outdated but we keep it valid for 1 extra month to allof wor a seamless renewal
+    cert->locked = 0;
+    cert->lock_req = 0;
+    cert->type = eCertGreatPatreon;            // * 
+    cert->level = eCertAdvanced;
+    cert->reservd_3 = 0;
+    cert->reservd_4 = 0;       // More features
+    cert->opt_desk = 1;        // Isolated Sandboxie Desktops:             "UseSandboxDesktop"
+    cert->opt_net = 1;         // * Advanced Network features:               "NetworkDnsFilter", "NetworkUseProxy".
+    cert->opt_enc = 1;         // * Box Encryption and Box Protection:       "ConfidentialBox", "UseFileImage", "EnableEFS".
+    cert->opt_sec = 1;         // * Various security enhanced box types:   "UseSecurityMode", "SysCallLockDown", "RestrictDevices", "UseRuleSpecificity", "UsePrivacyMode", "ProtectHostImages",
+                            // as well as reduced isolation box type:   "NoSecurityIsolation".
+                            
+                            // Other features, available with any cert: "UseRamDisk", "ForceUsbDrives",
+                            // as well as Automatic Updates, etc....
+    cert->expirers_in_sec = 0;
+
+    return STATUS_SUCCESS;
+}
+*/
+
 
 
 #define CERT_IS_TYPE(cert,t)        ((cert.type & 0b11100) == (unsigned long)(t))
